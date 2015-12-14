@@ -144,7 +144,16 @@ public class GUI
      */
     public String getName()
     {
-        return (String)JOptionPane.showInputDialog(frame, "Enter your name: ");
+        String[] options = {"OK"};
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Enter your name");
+        JTextField text = new JTextField(10);
+        panel.add(label);
+        panel.add(text);
+        JOptionPane.showOptionDialog(frame, panel, "Enter name",
+                JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, options, options[0]);
+        return text.getText();
     }
 
     /**
@@ -192,7 +201,8 @@ public class GUI
             catch (Exception exception) {}
         });
         newGameCustom.addActionListener(e -> customBoardDialog.setVisible(true));
-        highscores.addActionListener(e -> JOptionPane.showMessageDialog(frame, controller.getHighscoresText()));
+        highscores.addActionListener(e -> JOptionPane.showMessageDialog(frame, controller.getHighscoresText(),
+                "Highscores", JOptionPane.PLAIN_MESSAGE));
 
         mainMenu.add(menuLabel);
 

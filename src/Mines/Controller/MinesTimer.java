@@ -76,6 +76,7 @@ public class MinesTimer
      */
     public void restartTimer()
     {
+        stopTimer();
         timerText = 0.00;
         labeledTime.setText("Time: 0");
     }

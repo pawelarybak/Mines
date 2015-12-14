@@ -26,6 +26,7 @@ public class CustomBoardDialog extends JDialog
      */
     public CustomBoardDialog(JFrame frame, Controller controller) {
         super(frame, true);
+        setTitle("Custom");
 
         okButton.addActionListener(e -> {
             try {

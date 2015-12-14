@@ -150,7 +150,6 @@ public class Controller {
     {
         board.toggleFlag(x, y);
         gui.setMinesLeft("Mines left: " + Integer.toString(board.getMinesLeft()));
-        timer.startTimer();
 
         gui.refreshBoard();
     }
