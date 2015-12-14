@@ -8,7 +8,6 @@ import Mines.View.GUI;
  * Main class that starts the game.
  *
  * TODO:
- * Highscores
  * Reasonable images
  */
 public class Mines
