@@ -11,7 +11,10 @@ import static Mines.Images.*;
 import static Mines.Controller.Controller.*;
 
 /**
- * Created by pawel on 04.11.2015.
+ * Graphical user interface for minesweeper-like game.
+ *
+ * @author Pawel Rybak
+ * @version 1.0
  */
 public class GUI
 {
@@ -40,7 +43,12 @@ public class GUI
         initializeStatusBar();
     }
 
-    public void setController(Controller controller) {
+    /**
+     * Function sets reference to <code>Controller</code> object.
+     * @param controller reference to controller.
+     */
+    public void setController(Controller controller)
+    {
         this.controller = controller;
     }
 
@@ -130,6 +138,10 @@ public class GUI
         return timerText;
     }
 
+    /**
+     * Function shows dialog in which user is supposed to enter his name.
+     * @return name entered by user.
+     */
     public String getName()
     {
         return (String)JOptionPane.showInputDialog(frame, "Enter your name: ");
@@ -216,6 +228,11 @@ public class GUI
         statusBar.add(gameStateText);
     }
 
+    /**
+     * Class is extension of <code>JToggleButton</code>.
+     * It knows its coordinates in board and whether it is enabled
+     * It also has additional function to ask for image and refresh it.
+     */
     private class FieldGUI extends JToggleButton
     {
         private int x;

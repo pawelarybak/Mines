@@ -80,6 +80,10 @@ public class MinesTimer
         labeledTime.setText("Time: 0");
     }
 
+    /**
+     * Function returns current time converted to <code>float</code>.
+     * @return current time.
+     */
     public float getTime()
     {
         return (float)timerText;

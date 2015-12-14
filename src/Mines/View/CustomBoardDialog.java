@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by pawel on 20.11.2015.
+ * Class for dialog that gets from user parameters for custom game.
+ *
+ * @author Pawel Rybak
+ * @version 1.0
  */
 public class CustomBoardDialog extends JDialog
 {
@@ -18,8 +21,8 @@ public class CustomBoardDialog extends JDialog
 
     /**
      * Creates dialog with fields to get attributes of custom map and creates custom map.
-     * @param frame
-     * @param controller
+     * @param frame parent component.
+     * @param controller reference to controller.
      */
     public CustomBoardDialog(JFrame frame, Controller controller) {
         super(frame, true);

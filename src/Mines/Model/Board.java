@@ -74,8 +74,7 @@ public class Board
 
     /**
      * Function randomizes set of points in which mines will be set.
-     * Randomized points cannot be outside the board or
-     * mines in or around point given as parameter.
+     * Randomized points cannot be outside the board or in point given as parameter.
      * @param minesNumber number of mines to randomize.
      * @param startField point in and around which shouldn't be any mine.
      */
@@ -88,7 +87,7 @@ public class Board
             {
                 minedPoint = new Point(rand.nextInt(height), rand.nextInt(width));
             }
-            while (minedFields.contains(minedPoint) || isAround(minedPoint, startField));
+            while (minedFields.contains(minedPoint) || minedPoint.equals(startField));
             minedFields.add(minedPoint);
         }
 
@@ -96,25 +95,6 @@ public class Board
         {
             System.err.println("Wrong number of minedPoints in set");
         }
-    }
-
-    /**
-     * Function checks if point given as first parameter is point given as second parameter
-     * or around this point.
-     * @param checkedPoint point that is being checked.
-     * @param aroundWhich point around which its presence is checked.
-     * @return <code>true</code> if point is around second or <code>false</code> otherwise.
-     */
-    private boolean isAround(Point checkedPoint, Point aroundWhich)
-    {
-//        if (checkedPoint.x <= aroundWhich.x + 1 && checkedPoint.x >= aroundWhich.x - 1 &&
-//                checkedPoint.y <= aroundWhich.y + 1 && checkedPoint.y >= aroundWhich.y -1)
-//            return true;
-
-        if (checkedPoint.equals(aroundWhich))
-            return true;
-
-        return false;
     }
 
     /**
@@ -260,6 +240,7 @@ public class Board
      * uncovers all fields around. (Method can be recursive).
      * @param x vertical position of field (counting from 0).
      * @param y horizontal position of field (counting from 0).
+     * @return <code>true</code> if uncovered field was mined or <code>false</code> otherwise.
      */
     public boolean uncover (int x, int y)
     {

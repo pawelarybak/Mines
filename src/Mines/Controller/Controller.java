@@ -6,10 +6,6 @@ import Mines.View.GUI;
 
 import javax.swing.*;
 
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-
 import static Mines.Images.*;
 
 /**
@@ -21,6 +17,9 @@ import static Mines.Images.*;
  * @version 1.0
  */
 public class Controller {
+    /**
+     * Enumeration-type object which contains possible difficulty levels.
+     */
     public enum GameType {CUSTOM, BEGINNER, INTERMEDIATE, EXPERT}
 
     public int height;
@@ -31,6 +30,12 @@ public class Controller {
     private Highscores highscores;
     private GameType gameType;
 
+    /**
+     * Creates controller object and gets reference to GUI, model, and creates timer object.
+     * It also sets reference ing GUI to itself.
+     * @param gui reference to GUI
+     * @param board reference to model
+     */
     public Controller(GUI gui, Board board) {
         this.gui = gui;
         gui.setController(this);
@@ -39,7 +44,8 @@ public class Controller {
     }
 
     /**
-     * Initiates new game on board with giver parameters and restarts timer.
+     * Initiates new game on board with given parameters.
+     * Throws exception if board size is inappropriate.
      * @param width board width.
      * @param height board height.
      * @param minesNumber number of mines on board.
@@ -55,26 +61,48 @@ public class Controller {
         initiateGame(width, height, minesNumber);
     }
 
-    public void newGame(GameType type) throws Exception
+    /**
+     * Initiates new game on board with parameters defined by difficulty level.
+     * Difficulty is defined by special enum-type object called <code>GameType</code>.
+     * Levels:
+     * <code>BEGINNER</code> - 9x9 board with 10 mines,
+     * <code>INTERMEDIATE</code> - 16x16 board with 30 mines,
+     * <code>EXPERT</code> - 30x16 board with 99 mines.
+     * @param type difficulty level
+     */
+    public void newGame(GameType type)
     {
-        switch (type)
+        try
         {
-            case BEGINNER:
-                gameType = GameType.BEGINNER;
-                initiateGame(9, 9, 10);
-                break;
-            case INTERMEDIATE:
-                gameType = GameType.INTERMEDIATE;
-                initiateGame(16, 16, 30);
-                break;
-            case EXPERT:
-                gameType = GameType.EXPERT;
-                initiateGame(30, 16, 99);
-                break;
+            switch (type)
+            {
+                case BEGINNER:
+                    gameType = GameType.BEGINNER;
+                    initiateGame(9, 9, 10);
+                    break;
+                case INTERMEDIATE:
+                    gameType = GameType.INTERMEDIATE;
+                    initiateGame(16, 16, 30);
+                    break;
+                case EXPERT:
+                    gameType = GameType.EXPERT;
+                    initiateGame(30, 16, 99);
+                    break;
+            }
         }
+        catch (Exception e)
+        {}
     }
 
-    private void initiateGame(int width, int height, int minesNumber) throws Exception
+    /**
+     * Function used to initiate new game with given parameters.
+     * ATTENTION! Function isn't meant to be called directly by user, but through
+     * one of <code>newGame</code> functions.
+     * @param width board width.
+     * @param height board height.
+     * @param minesNumber number of mines in board.
+     */
+    private void initiateGame(int width, int height, int minesNumber)
     {
         highscores = Highscores.loadHighscores();
 
@@ -225,6 +253,11 @@ public class Controller {
         Highscores.saveHighscores(highscores);
     }
 
+    /**
+     * Function gets highscores entry as three-lined <code>String</code>.
+     * Each line style is: [Difficulty level]: [name], [time].
+     * @return Highscores text.
+     */
     public String getHighscoresText()
     {
         return highscores.getBeginnerEntry() + "\n" +

@@ -3,7 +3,7 @@ package Mines.Model;
 /**
  * Created on 04.11.2015.
  *
- * Class represents a model of single field in a Minesweeper-like game
+ * Class represents a model of single field in a Minesweeper-like game.
  *
  * @author Pawe³ Rybak
  * @version 1.0
@@ -20,10 +20,9 @@ public class Field
     /* Constructors */
 
     /**
-     * Creates new uncovered field without flag
-     * @param mined says if field has mine
-     * @param nearbyMines number of mines around a field
-     *                    (should be -1 if field has mine *to be changed in next version*)
+     * Creates new uncovered field without flag.
+     * @param mined says if field has mine.
+     * @param nearbyMines number of mines around field.
      */
     Field(boolean mined, int nearbyMines)
     {
